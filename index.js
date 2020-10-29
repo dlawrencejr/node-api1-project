@@ -48,7 +48,7 @@ server.post('/api/users',(req,res)=>{
    else{
        user.id = shortid.generate();
        users.push(user);
-       res.status(201).json(users);
+       res.status(201).json(user);
    }
 });
 
@@ -90,10 +90,10 @@ server.patch('/api/users/:id',(req,res)=>{
 //delete 
 server.delete('/api/users/:id',(req,res)=>{
     console.log(req.params.id)
-    let deleted = users.find( user => user.id == req.params.id)
+    const user = users.find( user => user.id === req.params.id)
 
-    if(deleted){
-        users = users.filter(user => user.id != user.id );
+    if(user){
+        users = users.filter(u => u.id !=user.id );
         res.status(200).json(users);
     }
     else{
